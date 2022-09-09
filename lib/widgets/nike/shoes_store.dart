@@ -204,7 +204,7 @@ class ShoesItem extends StatelessWidget {
                   children: [
                     Text(
                       shoesItem.model!,
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(height: 10),
                     Text(

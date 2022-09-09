@@ -190,7 +190,7 @@ class ButtonShopping extends StatelessWidget {
               color: Colors.black,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
                   const Expanded(
@@ -235,6 +235,7 @@ class AnimacionPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentImageSize =
         (_imageSize * animationResize.value).clamp(_finalImageSize, _imageSize);
+
     return TweenAnimationBuilder(
       curve: Curves.easeInOutCubicEmphasized,
       builder: (BuildContext context, Object? value, Widget? child) {
@@ -271,37 +272,51 @@ class AnimacionPanel extends StatelessWidget {
           mainAxisAlignment: animationResize.value == 1
               ? MainAxisAlignment.start
               : MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  shoes.images!.first,
-                  height: currentImageSize + 20,
-                ),
-                if (animationResize.value == 1) ...[
-                  const SizedBox(
-                    width: 20,
+            Padding(
+              padding: animationResize.value == 1
+                  ? const EdgeInsets.symmetric(horizontal: 20)
+                  : const EdgeInsets.symmetric(horizontal: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    shoes.images!.first,
+                    height: currentImageSize + 20,
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        shoes.model!,
-                        style: const TextStyle(
-                          fontSize: 14,
-                        ),
+                  if (animationResize.value == 1) ...[
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            textAlign: TextAlign.end,
+                            shoes.model!,
+                            maxLines: 2,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'S/. ${shoes.currentPrice}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'S\. ${shoes.currentPrice}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  )
-                ]
-              ],
+                    )
+                  ]
+                ],
+              ),
             ),
             if (animationResize.value == 1) ...[
               const SizedBox(
@@ -312,6 +327,9 @@ class AnimacionPanel extends StatelessWidget {
                 height: 20,
                 indent: 30,
                 endIndent: 30,
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -328,8 +346,103 @@ class AnimacionPanel extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ButtonhoeTalla(
+                          talla: 6,
+                          onTap: () {},
+                          colorBoton: Colors.white,
+                          colorText: Colors.black,
+                        ),
+                        ButtonhoeTalla(
+                          talla: 7,
+                          onTap: () {},
+                          colorBoton: Colors.white,
+                          colorText: Colors.black,
+                        ),
+                        ButtonhoeTalla(
+                          talla: 9,
+                          onTap: () {},
+                          colorBoton: Colors.white,
+                          colorText: Colors.black,
+                        ),
+                        ButtonhoeTalla(
+                          talla: 9.5,
+                          onTap: () {},
+                          colorBoton: Colors.white,
+                          colorText: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ButtonhoeTalla(
+                  talla: 6,
+                  onTap: () {},
+                  colorBoton: Colors.blue,
+                  colorText: Colors.black,
+                ),
+              )
             ]
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ButtonhoeTalla extends StatelessWidget {
+  final double talla;
+  final VoidCallback onTap;
+  final Color colorBoton;
+  final Color colorText;
+
+  const ButtonhoeTalla({
+    Key? key,
+    required this.talla,
+    required this.onTap,
+    required this.colorBoton,
+    required this.colorText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          width: 65,
+          height: 40,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey.shade400, //borde
+              width: 0.3,
+            ),
+            borderRadius: BorderRadius.circular(15),
+            color: colorBoton,
+          ),
+          child: Center(
+              child: Text(
+            'US $talla',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: colorText,
+            ),
+          )),
         ),
       ),
     );
