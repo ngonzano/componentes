@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+class ButtonEnable extends StatefulWidget {
+  const ButtonEnable({Key? key}) : super(key: key);
+
+  @override
+  State<ButtonEnable> createState() => _ButtonEnableState();
+}
+
+class _ButtonEnableState extends State<ButtonEnable> {
+  @override
+  Widget build(BuildContext context) {
+    return BotonAnimado();
+  }
+}
+
 class BotonAnimado extends StatefulWidget {
   const BotonAnimado({Key? key}) : super(key: key);
 
