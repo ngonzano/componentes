@@ -22,7 +22,7 @@ class Approutes {
     MenuOption(
         route: 'boton_color_animado',
         icon: Icons.list_alt,
-        screen: BotonAnimado(),
+        screen: ButtonEnable(),
         name: 'boton animado'),
     MenuOption(
         route: 'botonBarVisible',

@@ -10,7 +10,16 @@ class ButtonEnable extends StatefulWidget {
 class _ButtonEnableState extends State<ButtonEnable> {
   @override
   Widget build(BuildContext context) {
-    return BotonAnimado();
+    return Scaffold(
+        appBar: AppBar(),
+        body: Column(
+          children: [
+            BotonAnimado(),
+            BotonAnimado(),
+            BotonAnimado(),
+            BotonAnimado(),
+          ],
+        ));
   }
 }
 
@@ -25,9 +34,8 @@ class _BotonAnimadoState extends State<BotonAnimado> {
   bool enable = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: InkWell(
+    return SizedBox(
+      child: InkWell(
         onTap: () {
           setState(() {
             enable = !enable;
