@@ -264,10 +264,6 @@ class AnimacionPanel extends StatelessWidget {
           ),
           color: Colors.white,
         ),
-        // height: (size.height * 0.6 * animationResize.value)
-        //     .clamp(_buttonCircularSize, size.height * 0.6),
-        // width: (size.width * animationResize.value)
-        //     .clamp(_buttonCircularSize, size.width),
         child: Column(
           mainAxisAlignment: animationResize.value == 1
               ? MainAxisAlignment.start
