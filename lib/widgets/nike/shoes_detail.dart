@@ -140,39 +140,36 @@ class ShoesDetails extends StatelessWidget {
                   value as bool;
                   return AnimatedPositioned(
                     duration: const Duration(milliseconds: 200),
-                    left: 0,
-                    right: 0,
-                    bottom: value ? 0.0 : -kToolbarHeight,
+                    left: 20,
+                    right: 20,
+                    bottom: value ? 20.0 : -kToolbarHeight,
                     height: kToolbarHeight,
                     child: child!,
                   );
                 },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      FloatingActionButton(
-                        heroTag: 'fav_1',
-                        backgroundColor: Colors.white,
-                        onPressed: () {},
-                        child: const Icon(
-                          Icons.favorite_border,
-                          color: Colors.black,
-                        ),
+                child: Row(
+                  children: [
+                    FloatingActionButton(
+                      heroTag: 'fav_1',
+                      backgroundColor: Colors.white,
+                      onPressed: () {},
+                      child: const Icon(
+                        Icons.favorite_border,
+                        color: Colors.black,
                       ),
-                      const Spacer(),
-                      FloatingActionButton(
-                        heroTag: 'fav_2',
-                        backgroundColor: Colors.black,
-                        onPressed: () {
-                          _openShoppingCart(context);
-                        },
-                        child: const Icon(
-                          Icons.shopping_cart_checkout_outlined,
-                        ),
+                    ),
+                    const Spacer(),
+                    FloatingActionButton(
+                      heroTag: 'fav_2',
+                      backgroundColor: Colors.black,
+                      onPressed: () {
+                        _openShoppingCart(context);
+                      },
+                      child: const Icon(
+                        Icons.shopping_cart_checkout_outlined,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 )),
           ],
         ),

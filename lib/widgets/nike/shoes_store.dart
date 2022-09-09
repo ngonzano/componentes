@@ -30,6 +30,21 @@ class ShoesStore extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+          appBar: AppBar(
+            title: const Text('NIKE'),
+            foregroundColor: Colors.black,
+            leading: const BackButton(color: Colors.black),
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            elevation: 0,
+            actions: [
+              Image.network(
+                width: 50,
+                height: 50,
+                'https://graffica.info/wp-content/uploads/2022/04/logotipo-nike-838x285x80xX.jpeg',
+              ),
+            ],
+          ),
           backgroundColor: Colors.white,
           body: Stack(
             children: [
@@ -38,13 +53,13 @@ class ShoesStore extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Image.network(
-                      'https://graffica.info/wp-content/uploads/2022/04/logotipo-nike-838x285x80xX.jpeg',
-                      height: 20,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    // Image.network(
+                    //   'https://graffica.info/wp-content/uploads/2022/04/logotipo-nike-838x285x80xX.jpeg',
+                    //   height: 20,
+                    // ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
                     Expanded(
                       child: ListView.builder(
                         padding: const EdgeInsets.symmetric(vertical: 20),

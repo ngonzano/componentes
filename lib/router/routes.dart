@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/animar_area_objeto.dart';
 import '../screens/area_animada.dart';
+import '../widgets/ShoesStoretest.dart';
 import '../widgets/boton_snake_animado.dart';
 import '../widgets/boton_snake_circular_animado.dart';
 import '../widgets/shake_transition.dart';
@@ -17,6 +18,11 @@ class Approutes {
   static final menuOptions = <MenuOption>[
     //MenuOption(route: 'home', icon: Icons.home, screen: HomeScreen(), name: 'Home'),
 
+    MenuOption(
+        route: 'botonBarVisible',
+        icon: Icons.list_alt,
+        screen: BottonBarVisible(),
+        name: 'Boton aparece y desaparece de forma animada'),
     MenuOption(
         route: 'shoesStore',
         icon: Icons.list_alt,
