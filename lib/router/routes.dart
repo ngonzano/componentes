@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../screens/animar_area_objeto.dart';
 import '../screens/area_animada.dart';
-import '../widgets/ShoesStoretest.dart';
+import '../widgets/boton_animado.dart';
+import '../widgets/boton_visible_animado.dart';
 import '../widgets/boton_snake_animado.dart';
 import '../widgets/boton_snake_circular_animado.dart';
 import '../widgets/shake_transition.dart';
@@ -18,6 +19,11 @@ class Approutes {
   static final menuOptions = <MenuOption>[
     //MenuOption(route: 'home', icon: Icons.home, screen: HomeScreen(), name: 'Home'),
 
+    MenuOption(
+        route: 'boton_color_animado',
+        icon: Icons.list_alt,
+        screen: BotonAnimado(),
+        name: 'boton animado'),
     MenuOption(
         route: 'botonBarVisible',
         icon: Icons.list_alt,
