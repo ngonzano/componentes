@@ -350,30 +350,18 @@ class AnimacionPanel extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                      children: [
+                      children: const [
                         ButtonhoeTalla(
                           talla: 6,
-                          onTap: () {},
-                          colorBoton: Colors.white,
-                          colorText: Colors.black,
                         ),
                         ButtonhoeTalla(
                           talla: 7,
-                          onTap: () {},
-                          colorBoton: Colors.white,
-                          colorText: Colors.black,
                         ),
                         ButtonhoeTalla(
                           talla: 9,
-                          onTap: () {},
-                          colorBoton: Colors.white,
-                          colorText: Colors.black,
                         ),
                         ButtonhoeTalla(
                           talla: 9.5,
-                          onTap: () {},
-                          colorBoton: Colors.white,
-                          colorText: Colors.black,
                         ),
                       ],
                     ),
@@ -383,13 +371,10 @@ class AnimacionPanel extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: ButtonhoeTalla(
                   talla: 6,
-                  onTap: () {},
-                  colorBoton: Colors.blue,
-                  colorText: Colors.black,
                 ),
               )
             ]
@@ -402,16 +387,10 @@ class AnimacionPanel extends StatelessWidget {
 
 class ButtonhoeTalla extends StatelessWidget {
   final double talla;
-  final VoidCallback onTap;
-  final Color colorBoton;
-  final Color colorText;
 
   const ButtonhoeTalla({
     Key? key,
     required this.talla,
-    required this.onTap,
-    required this.colorBoton,
-    required this.colorText,
   }) : super(key: key);
 
   @override
@@ -419,7 +398,6 @@ class ButtonhoeTalla extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: InkWell(
-        onTap: onTap,
         child: Container(
           width: 65,
           height: 40,
@@ -429,14 +407,12 @@ class ButtonhoeTalla extends StatelessWidget {
               width: 0.3,
             ),
             borderRadius: BorderRadius.circular(15),
-            color: colorBoton,
           ),
           child: Center(
               child: Text(
             'US $talla',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: colorText,
             ),
           )),
         ),
