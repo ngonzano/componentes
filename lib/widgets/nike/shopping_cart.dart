@@ -385,7 +385,7 @@ class AnimacionPanel extends StatelessWidget {
   }
 }
 
-class ButtonhoeTalla extends StatelessWidget {
+class ButtonhoeTalla extends StatefulWidget {
   final double talla;
 
   const ButtonhoeTalla({
@@ -394,29 +394,46 @@ class ButtonhoeTalla extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ButtonhoeTalla> createState() => _ButtonhoeTallaState();
+}
+
+class _ButtonhoeTallaState extends State<ButtonhoeTalla> {
+  bool enable = true;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: InkWell(
-        child: Container(
-          width: 65,
-          height: 40,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.grey.shade400, //borde
-              width: 0.3,
-            ),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Center(
-              child: Text(
-            'US $talla',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
+          onTap: () {
+            setState(() {
+              enable = !enable;
+            });
+          },
+          child: SizedBox(
+            width: 65,
+            height: 40,
+            child: AnimatedContainer(
+              curve: Curves.decelerate,
+              duration: const Duration(milliseconds: 500),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade400, //borde
+                  width: 0.3,
+                ),
+                color: enable ? Colors.white : Colors.black,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  'US ${widget.talla}',
+                  style: TextStyle(
+                    color: enable ? Colors.black : Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           )),
-        ),
-      ),
     );
   }
 }
