@@ -14,31 +14,34 @@ class _ButtonEnableState extends State<ButtonEnable> {
         appBar: AppBar(),
         body: Column(
           children: [
-            BotonAnimado(),
-            BotonAnimado(),
-            BotonAnimado(),
-            BotonAnimado(),
+            BotonAnimado(
+              enableButton: true,
+            ),
+            BotonAnimado(enableButton: true),
+            BotonAnimado(enableButton: true),
+            BotonAnimado(enableButton: true),
           ],
         ));
   }
 }
 
 class BotonAnimado extends StatefulWidget {
-  const BotonAnimado({Key? key}) : super(key: key);
+  BotonAnimado({Key? key, required this.enableButton}) : super(key: key);
+  bool enableButton;
 
   @override
   State<BotonAnimado> createState() => _BotonAnimadoState();
 }
 
 class _BotonAnimadoState extends State<BotonAnimado> {
-  bool enable = true;
+  // bool enable = true;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: InkWell(
         onTap: () {
           setState(() {
-            enable = !enable;
+            widget.enableButton = !widget.enableButton;
           });
         },
         child: SizedBox(
@@ -47,7 +50,7 @@ class _BotonAnimadoState extends State<BotonAnimado> {
           child: AnimatedContainer(
             curve: Curves.decelerate,
             duration: const Duration(seconds: 1),
-            color: enable ? Colors.green : Colors.black,
+            color: widget.enableButton ? Colors.green : Colors.black,
           ),
         ),
       ),
