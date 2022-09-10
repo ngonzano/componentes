@@ -64,6 +64,7 @@ class _ShoppingCartState extends State<ShoppingCart>
     super.dispose();
   }
 
+//aqui la logica del boton
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -122,12 +123,14 @@ class _ShoppingCartState extends State<ShoppingCart>
                   ],
                   //boton del panel
                   ButtonShopping(
-                      animationMovementOut: _animationMovementOut,
-                      size: size,
-                      butonSizeWidth_: butonSizeWidth_,
-                      controller: _controller,
-                      buttonSizeHeigth_: buttonSizeHeigth_,
-                      animationResize: _animationResize),
+                    animationMovementOut: _animationMovementOut,
+                    size: size,
+                    butonSizeWidth_: butonSizeWidth_,
+                    controller: _controller,
+                    buttonSizeHeigth_: buttonSizeHeigth_,
+                    animationResize: _animationResize,
+                    enableColor: Colors.black,
+                  ),
                 ],
               ),
             )
@@ -139,6 +142,7 @@ class _ShoppingCartState extends State<ShoppingCart>
 }
 
 class ButtonShopping extends StatelessWidget {
+  final Color enableColor;
   const ButtonShopping({
     Key? key,
     required Animation<double>? animationMovementOut,
@@ -147,6 +151,7 @@ class ButtonShopping extends StatelessWidget {
     required AnimationController? controller,
     required this.buttonSizeHeigth_,
     required Animation<double>? animationResize,
+    required this.enableColor,
   })  : _animationMovementOut = animationMovementOut,
         _controller = controller,
         _animationResize = animationResize,
@@ -187,7 +192,7 @@ class ButtonShopping extends StatelessWidget {
             height: buttonSizeHeigth_,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.black, //aqui cambiar de color
+              color: enableColor, //aqui cambiar de color
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -368,10 +373,10 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                   children: [
                     Row(
                       children: [
-                        ButtonhoeTalla(
+                        ButtonTalla(
                           talla: 6,
                           enableButton: enable1,
-                          onTap: () {
+                          onTapButton: () {
                             setState(() {
                               if (enablex1) {
                                 enable1 = !enable1;
@@ -391,10 +396,10 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                             });
                           },
                         ),
-                        ButtonhoeTalla(
+                        ButtonTalla(
                           talla: 7,
                           enableButton: enable2,
-                          onTap: () {
+                          onTapButton: () {
                             setState(() {
                               if (enablex2) {
                                 enable2 = !enable2;
@@ -414,10 +419,10 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                             });
                           },
                         ),
-                        ButtonhoeTalla(
+                        ButtonTalla(
                           talla: 9,
                           enableButton: enable3,
-                          onTap: () {
+                          onTapButton: () {
                             setState(() {
                               if (enablex3) {
                                 enable3 = !enable3;
@@ -437,10 +442,10 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                             });
                           },
                         ),
-                        ButtonhoeTalla(
+                        ButtonTalla(
                           talla: 9.5,
                           enableButton: enable4,
-                          onTap: () {
+                          onTapButton: () {
                             setState(() {
                               if (enablex4) {
                                 enable4 = !enable4;
@@ -470,10 +475,10 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ButtonhoeTalla(
+                child: ButtonTalla(
                   talla: 10,
                   enableButton: enable5,
-                  onTap: () {
+                  onTapButton: () {
                     setState(() {
                       if (enablex5) {
                         enable5 = !enable5;
@@ -501,16 +506,16 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
   }
 }
 
-class ButtonhoeTalla extends StatelessWidget {
+class ButtonTalla extends StatelessWidget {
   final double talla;
-  final VoidCallback onTap;
+  final VoidCallback onTapButton;
   final bool enableButton;
 
-  const ButtonhoeTalla({
+  const ButtonTalla({
     Key? key,
     required this.talla,
     required this.enableButton,
-    required this.onTap,
+    required this.onTapButton,
   }) : super(key: key);
 
   @override
@@ -518,7 +523,7 @@ class ButtonhoeTalla extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: InkWell(
-          onTap: onTap,
+          onTap: onTapButton,
           child: SizedBox(
             width: 65,
             height: 40,
