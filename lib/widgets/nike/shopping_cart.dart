@@ -241,6 +241,13 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
   bool enable3 = true;
   bool enable4 = true;
   bool enable5 = true;
+
+  bool enablex1 = true;
+  bool enablex2 = true;
+  bool enablex3 = true;
+  bool enablex4 = true;
+  bool enablex5 = true;
+
   @override
   Widget build(BuildContext context) {
     final currentImageSize = (_imageSize * widget.animationResize.value)
@@ -365,48 +372,92 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                           talla: 6,
                           enableButton: enable1,
                           onTap: () {
-                            enable1 = !enable1;
-                            enable2 = !enable1;
-                            enable3 = !enable1;
-                            enable4 = !enable1;
-                            enable5 = !enable1;
-                            setState(() {});
+                            setState(() {
+                              if (enablex1) {
+                                enable1 = !enable1;
+                                enable2 = !enable1;
+                                enable3 = !enable1;
+                                enable4 = !enable1;
+                                enable5 = !enable1;
+                              } else {
+                                enable1 = enable2 =
+                                    enable4 = enable3 = enable5 = true;
+                              }
+                              enablex1 = !enablex1;
+                              enablex3 = true;
+                              enablex4 = true;
+                              enablex2 = true;
+                              enablex5 = true;
+                            });
                           },
                         ),
                         ButtonhoeTalla(
                           talla: 7,
                           enableButton: enable2,
                           onTap: () {
-                            enable2 = !enable2;
-                            enable1 = !enable2;
-                            enable3 = !enable2;
-                            enable4 = !enable2;
-                            enable5 = !enable2;
-                            setState(() {});
+                            setState(() {
+                              if (enablex2) {
+                                enable2 = !enable2;
+                                enable1 = !enable2;
+                                enable3 = !enable2;
+                                enable4 = !enable2;
+                                enable5 = !enable2;
+                              } else {
+                                enable1 = enable2 =
+                                    enable4 = enable3 = enable5 = true;
+                              }
+                              enablex2 = !enablex2;
+                              enablex3 = true;
+                              enablex4 = true;
+                              enablex1 = true;
+                              enablex5 = true;
+                            });
                           },
                         ),
                         ButtonhoeTalla(
                           talla: 9,
                           enableButton: enable3,
                           onTap: () {
-                            enable3 = !enable3;
-                            enable2 = !enable3;
-                            enable1 = !enable3;
-                            enable4 = !enable3;
-                            enable5 = !enable3;
-                            setState(() {});
+                            setState(() {
+                              if (enablex3) {
+                                enable3 = !enable3;
+                                enable2 = !enable3;
+                                enable1 = !enable3;
+                                enable4 = !enable3;
+                                enable5 = !enable3;
+                              } else {
+                                enable1 = enable2 =
+                                    enable4 = enable3 = enable5 = true;
+                              }
+                              enablex3 = !enablex3;
+                              enablex2 = true;
+                              enablex4 = true;
+                              enablex1 = true;
+                              enablex5 = true;
+                            });
                           },
                         ),
                         ButtonhoeTalla(
                           talla: 9.5,
                           enableButton: enable4,
                           onTap: () {
-                            enable4 = !enable4;
-                            enable2 = !enable4;
-                            enable1 = !enable4;
-                            enable3 = !enable4;
-                            enable5 = !enable4;
-                            setState(() {});
+                            setState(() {
+                              if (enablex4) {
+                                enable4 = !enable4;
+                                enable2 = !enable4;
+                                enable1 = !enable4;
+                                enable3 = !enable4;
+                                enable5 = !enable4;
+                              } else {
+                                enable1 = enable2 =
+                                    enable4 = enable3 = enable5 = true;
+                              }
+                              enablex4 = !enablex4;
+                              enablex2 = true;
+                              enablex3 = true;
+                              enablex1 = true;
+                              enablex5 = true;
+                            });
                           },
                         ),
                       ],
@@ -423,12 +474,22 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                   talla: 10,
                   enableButton: enable5,
                   onTap: () {
-                    enable5 = !enable5;
-                    enable2 = !enable5;
-                    enable1 = !enable5;
-                    enable3 = !enable5;
-                    enable4 = !enable5;
-                    setState(() {});
+                    setState(() {
+                      if (enablex5) {
+                        enable5 = !enable5;
+                        enable2 = !enable5;
+                        enable1 = !enable5;
+                        enable3 = !enable5;
+                        enable4 = !enable5;
+                      } else {
+                        enable1 = enable2 = enable4 = enable3 = enable5 = true;
+                      }
+                      enablex5 = !enablex5;
+                      enablex2 = true;
+                      enablex3 = true;
+                      enablex1 = true;
+                      enablex4 = true;
+                    });
                   },
                 ),
               )
