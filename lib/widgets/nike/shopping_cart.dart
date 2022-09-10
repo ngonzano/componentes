@@ -219,7 +219,7 @@ class ButtonShopping extends StatelessWidget {
   }
 }
 
-class AnimacionPanel extends StatelessWidget {
+class AnimacionPanel extends StatefulWidget {
   const AnimacionPanel({
     Key? key,
     required this.size,
@@ -232,9 +232,19 @@ class AnimacionPanel extends StatelessWidget {
   final Animation<double> animationResize;
 
   @override
+  State<AnimacionPanel> createState() => _AnimacionPanelState();
+}
+
+class _AnimacionPanelState extends State<AnimacionPanel> {
+  bool enable1 = true;
+  bool enable2 = true;
+  bool enable3 = true;
+  bool enable4 = true;
+  bool enable5 = true;
+  @override
   Widget build(BuildContext context) {
-    final currentImageSize =
-        (_imageSize * animationResize.value).clamp(_finalImageSize, _imageSize);
+    final currentImageSize = (_imageSize * widget.animationResize.value)
+        .clamp(_finalImageSize, _imageSize);
 
     return TweenAnimationBuilder(
       curve: Curves.easeInOutCubicEmphasized,
@@ -243,7 +253,7 @@ class AnimacionPanel extends StatelessWidget {
         return Transform.translate(
           offset: Offset(
             0.0,
-            value * size.height * 0.6,
+            value * widget.size.height * 0.6,
           ),
           child: child,
         );
@@ -255,33 +265,33 @@ class AnimacionPanel extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(30),
             topRight: const Radius.circular(30),
-            bottomLeft: animationResize.value == 1
+            bottomLeft: widget.animationResize.value == 1
                 ? const Radius.circular(0)
                 : const Radius.circular(30),
-            bottomRight: animationResize.value == 1
+            bottomRight: widget.animationResize.value == 1
                 ? const Radius.circular(0)
                 : const Radius.circular(30),
           ),
           color: Colors.white,
         ),
         child: Column(
-          mainAxisAlignment: animationResize.value == 1
+          mainAxisAlignment: widget.animationResize.value == 1
               ? MainAxisAlignment.start
               : MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: animationResize.value == 1
+              padding: widget.animationResize.value == 1
                   ? const EdgeInsets.symmetric(horizontal: 20)
                   : const EdgeInsets.symmetric(horizontal: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    shoes.images!.first,
+                    widget.shoes.images!.first,
                     height: currentImageSize + 20,
                   ),
-                  if (animationResize.value == 1) ...[
+                  if (widget.animationResize.value == 1) ...[
                     const SizedBox(
                       width: 20,
                     ),
@@ -291,7 +301,7 @@ class AnimacionPanel extends StatelessWidget {
                         children: [
                           Text(
                             textAlign: TextAlign.end,
-                            shoes.model!,
+                            widget.shoes.model!,
                             maxLines: 2,
                             style: const TextStyle(
                               fontSize: 14,
@@ -301,7 +311,7 @@ class AnimacionPanel extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            'S/. ${shoes.currentPrice}',
+                            'S/. ${widget.shoes.currentPrice}',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -314,7 +324,7 @@ class AnimacionPanel extends StatelessWidget {
                 ],
               ),
             ),
-            if (animationResize.value == 1) ...[
+            if (widget.animationResize.value == 1) ...[
               const SizedBox(
                 height: 20,
               ),
@@ -350,22 +360,54 @@ class AnimacionPanel extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                      children: const [
+                      children: [
                         ButtonhoeTalla(
                           talla: 6,
-                          tag: 'talla06',
+                          enableButton: enable1,
+                          onTap: () {
+                            enable1 = !enable1;
+                            enable2 = !enable1;
+                            enable3 = !enable1;
+                            enable4 = !enable1;
+                            enable5 = !enable1;
+                            setState(() {});
+                          },
                         ),
                         ButtonhoeTalla(
                           talla: 7,
-                          tag: 'talla07',
+                          enableButton: enable2,
+                          onTap: () {
+                            enable2 = !enable2;
+                            enable1 = !enable2;
+                            enable3 = !enable2;
+                            enable4 = !enable2;
+                            enable5 = !enable2;
+                            setState(() {});
+                          },
                         ),
                         ButtonhoeTalla(
                           talla: 9,
-                          tag: 'talla09',
+                          enableButton: enable3,
+                          onTap: () {
+                            enable3 = !enable3;
+                            enable2 = !enable3;
+                            enable1 = !enable3;
+                            enable4 = !enable3;
+                            enable5 = !enable3;
+                            setState(() {});
+                          },
                         ),
                         ButtonhoeTalla(
                           talla: 9.5,
-                          tag: 'talla9.5',
+                          enableButton: enable4,
+                          onTap: () {
+                            enable4 = !enable4;
+                            enable2 = !enable4;
+                            enable1 = !enable4;
+                            enable3 = !enable4;
+                            enable5 = !enable4;
+                            setState(() {});
+                          },
                         ),
                       ],
                     ),
@@ -375,11 +417,19 @@ class AnimacionPanel extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ButtonhoeTalla(
                   talla: 10,
-                  tag: 'talla10',
+                  enableButton: enable5,
+                  onTap: () {
+                    enable5 = !enable5;
+                    enable2 = !enable5;
+                    enable1 = !enable5;
+                    enable3 = !enable5;
+                    enable4 = !enable5;
+                    setState(() {});
+                  },
                 ),
               )
             ]
@@ -390,32 +440,24 @@ class AnimacionPanel extends StatelessWidget {
   }
 }
 
-class ButtonhoeTalla extends StatefulWidget {
+class ButtonhoeTalla extends StatelessWidget {
   final double talla;
-  final Object tag;
+  final VoidCallback onTap;
+  final bool enableButton;
 
   const ButtonhoeTalla({
     Key? key,
     required this.talla,
-    required this.tag,
+    required this.enableButton,
+    required this.onTap,
   }) : super(key: key);
 
-  @override
-  State<ButtonhoeTalla> createState() => _ButtonhoeTallaState();
-}
-
-class _ButtonhoeTallaState extends State<ButtonhoeTalla> {
-  bool enable = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: InkWell(
-          onTap: () {
-            setState(() {
-              enable = !enable;
-            });
-          },
+          onTap: onTap,
           child: SizedBox(
             width: 65,
             height: 40,
@@ -427,14 +469,14 @@ class _ButtonhoeTallaState extends State<ButtonhoeTalla> {
                   color: Colors.grey.shade400, //borde
                   width: 0.3,
                 ),
-                color: enable ? Colors.white : Colors.black, //cambiar
+                color: enableButton ? Colors.white : Colors.black, //cambiar
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
                 child: Text(
-                  'US ${widget.talla}',
+                  'US $talla',
                   style: TextStyle(
-                    color: enable ? Colors.black : Colors.white, //cambiar
+                    color: enableButton ? Colors.black : Colors.white, //cambiar
                     fontWeight: FontWeight.bold,
                   ),
                 ),
