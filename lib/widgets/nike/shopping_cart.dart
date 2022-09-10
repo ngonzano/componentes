@@ -353,15 +353,19 @@ class AnimacionPanel extends StatelessWidget {
                       children: const [
                         ButtonhoeTalla(
                           talla: 6,
+                          tag: 'talla06',
                         ),
                         ButtonhoeTalla(
                           talla: 7,
+                          tag: 'talla07',
                         ),
                         ButtonhoeTalla(
                           talla: 9,
+                          tag: 'talla09',
                         ),
                         ButtonhoeTalla(
                           talla: 9.5,
+                          tag: 'talla9.5',
                         ),
                       ],
                     ),
@@ -374,7 +378,8 @@ class AnimacionPanel extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: ButtonhoeTalla(
-                  talla: 6,
+                  talla: 10,
+                  tag: 'talla10',
                 ),
               )
             ]
@@ -387,10 +392,12 @@ class AnimacionPanel extends StatelessWidget {
 
 class ButtonhoeTalla extends StatefulWidget {
   final double talla;
+  final Object tag;
 
   const ButtonhoeTalla({
     Key? key,
     required this.talla,
+    required this.tag,
   }) : super(key: key);
 
   @override
@@ -420,14 +427,14 @@ class _ButtonhoeTallaState extends State<ButtonhoeTalla> {
                   color: Colors.grey.shade400, //borde
                   width: 0.3,
                 ),
-                color: enable ? Colors.white : Colors.black,
+                color: enable ? Colors.white : Colors.black, //cambiar
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
                 child: Text(
                   'US ${widget.talla}',
                   style: TextStyle(
-                    color: enable ? Colors.black : Colors.white,
+                    color: enable ? Colors.black : Colors.white, //cambiar
                     fontWeight: FontWeight.bold,
                   ),
                 ),
