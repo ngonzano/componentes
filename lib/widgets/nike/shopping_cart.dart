@@ -96,7 +96,7 @@ class _ShoppingCartState extends State<ShoppingCart>
                   Navigator.of(context).pop();
                 },
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
                     color: Colors.black87.withOpacity(0.7),
                   ),
@@ -187,7 +187,7 @@ class ButtonShopping extends StatelessWidget {
             height: buttonSizeHeigth_,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.black,
+              color: Colors.black, //aqui cambiar de color
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
