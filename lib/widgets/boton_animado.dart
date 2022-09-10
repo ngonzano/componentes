@@ -52,10 +52,7 @@ class _ButtonEnableState extends State<ButtonEnable> {
                     enable3 = !enable2;
                     enable4 = !enable2;
                   } else {
-                    enable2 = true;
-                    enable1 = true;
-                    enable3 = true;
-                    enable4 = true;
+                    enable1 = enable2 = enable4 = enable3 = true;
                   }
                   enablex2 = !enablex2;
                   enablex3 = true;
@@ -74,10 +71,7 @@ class _ButtonEnableState extends State<ButtonEnable> {
                     enable1 = !enable3;
                     enable4 = !enable3;
                   } else {
-                    enable3 = true;
-                    enable2 = true;
-                    enable1 = true;
-                    enable4 = true;
+                    enable1 = enable2 = enable4 = enable3 = true;
                   }
                   enablex3 = !enablex3;
                   enablex2 = true;
@@ -96,10 +90,7 @@ class _ButtonEnableState extends State<ButtonEnable> {
                     enable1 = !enable4;
                     enable3 = !enable4;
                   } else {
-                    enable4 = true;
-                    enable2 = true;
-                    enable1 = true;
-                    enable3 = true;
+                    enable1 = enable2 = enable4 = enable3 = true;
                   }
                   enablex4 = !enablex4;
                   enablex2 = true;
