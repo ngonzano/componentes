@@ -20,7 +20,6 @@ class _ButtonEnableState extends State<ButtonEnable> {
 
   @override
   Widget build(BuildContext context) {
-    bool enable = enable1 = enable2 = enable3 = enable4;
     return Scaffold(
         appBar: AppBar(),
         body: Column(
@@ -29,12 +28,17 @@ class _ButtonEnableState extends State<ButtonEnable> {
                 onTap: () {
                   setState(() {
                     if (enablex1) {
-                      enable = !enable1;
+                      enable1 = !enable1;
+                      enable2 = !enable1;
+                      enable3 = !enable1;
+                      enable4 = !enable1;
                     } else {
-                      enable = true;
+                      enable1 = enable2 = enable4 = enable3 = true;
                     }
                     enablex1 = !enablex1;
-                    enablex3 = enablex4 = enablex2 = true;
+                    enablex3 = true;
+                    enablex4 = true;
+                    enablex2 = true;
                   });
                 },
                 enableButton: enable1),
@@ -43,12 +47,20 @@ class _ButtonEnableState extends State<ButtonEnable> {
               onTap: () {
                 setState(() {
                   if (enablex2) {
-                    enable = !enable2;
+                    enable2 = !enable2;
+                    enable1 = !enable2;
+                    enable3 = !enable2;
+                    enable4 = !enable2;
                   } else {
-                    enable = true;
+                    enable2 = true;
+                    enable1 = true;
+                    enable3 = true;
+                    enable4 = true;
                   }
                   enablex2 = !enablex2;
-                  enablex3 = enablex4 = enablex1 = true;
+                  enablex3 = true;
+                  enablex4 = true;
+                  enablex1 = true;
                 });
               },
             ),
@@ -57,12 +69,20 @@ class _ButtonEnableState extends State<ButtonEnable> {
               onTap: () {
                 setState(() {
                   if (enablex3) {
-                    enable = !enable3;
+                    enable3 = !enable3;
+                    enable2 = !enable3;
+                    enable1 = !enable3;
+                    enable4 = !enable3;
                   } else {
-                    enable = true;
+                    enable3 = true;
+                    enable2 = true;
+                    enable1 = true;
+                    enable4 = true;
                   }
                   enablex3 = !enablex3;
-                  enablex2 = enablex4 = enablex1 = true;
+                  enablex2 = true;
+                  enablex4 = true;
+                  enablex1 = true;
                 });
               },
             ),
@@ -71,12 +91,20 @@ class _ButtonEnableState extends State<ButtonEnable> {
               onTap: () {
                 setState(() {
                   if (enablex4) {
-                    enable = !enable4;
+                    enable4 = !enable4;
+                    enable2 = !enable4;
+                    enable1 = !enable4;
+                    enable3 = !enable4;
                   } else {
-                    enable = true;
+                    enable4 = true;
+                    enable2 = true;
+                    enable1 = true;
+                    enable3 = true;
                   }
                   enablex4 = !enablex4;
-                  enablex2 = enablex3 = enablex1 = true;
+                  enablex2 = true;
+                  enablex3 = true;
+                  enablex1 = true;
                 });
               },
             ),
