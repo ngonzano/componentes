@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:fl_componentes/provider/provider.dart';
 import 'package:fl_componentes/widgets/nike/model_shoes_store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 const double _buttonSizeWidth = 160.0;
 const double _buttonSizeHeight = 60.0;
@@ -64,7 +66,6 @@ class _ShoppingCartState extends State<ShoppingCart>
     super.dispose();
   }
 
-//aqui la logica del boton
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -90,51 +91,60 @@ class _ShoppingCartState extends State<ShoppingCart>
           final double panelSizeHeight = (size.height * _animationResize!.value)
               .clamp(_buttonCircularSize, size.height);
 
-          return Stack(fit: StackFit.expand, children: [
-            Positioned.fill(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    color: Colors.black87.withOpacity(0.7),
+          EnableButtonShopping watch = context.watch<EnableButtonShopping>();
+
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned.fill(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      color: Colors.black87.withOpacity(0.7),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned.fill(
-              child: Stack(
-                children: [
-                  if (_animationMovementIn!.value != 1) ...[
-                    Positioned(
-                      top: size.height * 0.4 +
-                          (_animationMovementIn!.value * size.height * 0.4758),
-                      left: size.width * 0.5 - panelSizeWidth * 0.5,
-                      width: panelSizeWidth,
-                      height: panelSizeHeight,
-                      child: AnimacionPanel(
-                        size: size,
-                        shoes: widget.shoes,
-                        animationResize: _animationResize!,
+              Positioned.fill(
+                child: Stack(
+                  children: [
+                    if (_animationMovementIn!.value != 1) ...[
+                      Positioned(
+                        top: size.height * 0.4 +
+                            (_animationMovementIn!.value *
+                                size.height *
+                                0.4758),
+                        left: size.width * 0.5 - panelSizeWidth * 0.5,
+                        width: panelSizeWidth,
+                        height: panelSizeHeight,
+                        child: AnimacionPanel(
+                          size: size,
+                          shoes: widget.shoes,
+                          animationResize: _animationResize!,
+                        ),
                       ),
+                    ],
+                    //boton del panel
+                    ButtonShopping(
+                      animationMovementOut: _animationMovementOut,
+                      size: size,
+                      butonSizeWidth_: butonSizeWidth_,
+                      controller: _controller,
+                      buttonSizeHeigth_: buttonSizeHeigth_,
+                      animationResize: _animationResize,
+                      enableColor: watch.enableButtonShopping
+                          ? Colors.black
+                          : Colors.grey, //TODO: cambiar el color pay
                     ),
                   ],
-                  //boton del panel
-                  ButtonShopping(
-                    animationMovementOut: _animationMovementOut,
-                    size: size,
-                    butonSizeWidth_: butonSizeWidth_,
-                    controller: _controller,
-                    buttonSizeHeigth_: buttonSizeHeigth_,
-                    animationResize: _animationResize,
-                    enableColor: Colors.black,
-                  ),
-                ],
-              ),
-            )
-          ]);
+                ),
+              )
+            ],
+          );
         },
       ),
     );
@@ -166,6 +176,7 @@ class ButtonShopping extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    EnableButtonShopping watch = context.watch<EnableButtonShopping>();
     return Positioned(
       bottom: 40 - (_animationMovementOut!.value * 100),
       left: size.width * 0.5 - butonSizeWidth_ * 0.5,
@@ -184,9 +195,11 @@ class ButtonShopping extends StatelessWidget {
         },
         tween: Tween(begin: 1.0, end: 0.0),
         child: InkWell(
-          onTap: () {
-            _controller!.forward(); //inicia la animacion
-          },
+          onTap: watch.enableButtonShopping
+              ? () {
+                  _controller!.forward(); //inicia la animacion
+                }
+              : () {},
           child: Container(
             width: butonSizeWidth_,
             height: buttonSizeHeigth_,
@@ -257,7 +270,7 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
   Widget build(BuildContext context) {
     final currentImageSize = (_imageSize * widget.animationResize.value)
         .clamp(_finalImageSize, _imageSize);
-
+    EnableButtonShopping watch = context.watch<EnableButtonShopping>();
     return TweenAnimationBuilder(
       curve: Curves.easeInOutCubicEmphasized,
       builder: (BuildContext context, Object? value, Widget? child) {
@@ -377,6 +390,9 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                           talla: 6,
                           enableButton: enable1,
                           onTapButton: () {
+                            context
+                                .read<EnableButtonShopping>()
+                                .setBoolButton(enableShopping: enablex1);
                             setState(() {
                               if (enablex1) {
                                 enable1 = !enable1;
@@ -400,6 +416,9 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                           talla: 7,
                           enableButton: enable2,
                           onTapButton: () {
+                            context
+                                .read<EnableButtonShopping>()
+                                .setBoolButton(enableShopping: enablex2);
                             setState(() {
                               if (enablex2) {
                                 enable2 = !enable2;
@@ -423,6 +442,9 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                           talla: 9,
                           enableButton: enable3,
                           onTapButton: () {
+                            context
+                                .read<EnableButtonShopping>()
+                                .setBoolButton(enableShopping: enablex3);
                             setState(() {
                               if (enablex3) {
                                 enable3 = !enable3;
@@ -446,6 +468,9 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                           talla: 9.5,
                           enableButton: enable4,
                           onTapButton: () {
+                            context
+                                .read<EnableButtonShopping>()
+                                .setBoolButton(enableShopping: enablex4);
                             setState(() {
                               if (enablex4) {
                                 enable4 = !enable4;
@@ -479,6 +504,9 @@ class _AnimacionPanelState extends State<AnimacionPanel> {
                   talla: 10,
                   enableButton: enable5,
                   onTapButton: () {
+                    context
+                        .read<EnableButtonShopping>()
+                        .setBoolButton(enableShopping: enablex5);
                     setState(() {
                       if (enablex5) {
                         enable5 = !enable5;

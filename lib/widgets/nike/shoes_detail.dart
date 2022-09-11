@@ -1,7 +1,9 @@
+import 'package:fl_componentes/provider/provider.dart';
 import 'package:fl_componentes/widgets/nike/model_shoes_store.dart';
 import 'package:fl_componentes/widgets/nike/shopping_cart.dart';
 import 'package:fl_componentes/widgets/shake_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShoesDetails extends StatelessWidget {
   final Shoes shoes;
@@ -16,6 +18,7 @@ class ShoesDetails extends StatelessWidget {
       notifierButtonsVisible.value = true; //esto lo hace aparecer
     });
     final size = MediaQuery.of(context).size;
+    EnableButtonShopping watch = context.watch<EnableButtonShopping>();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -163,6 +166,9 @@ class ShoesDetails extends StatelessWidget {
                       heroTag: 'fav_2',
                       backgroundColor: Colors.black,
                       onPressed: () {
+                        context
+                            .read<EnableButtonShopping>()
+                            .setBoolButton(enableShopping: false);
                         _openShoppingCart(context);
                       },
                       child: const Icon(
@@ -179,6 +185,7 @@ class ShoesDetails extends StatelessWidget {
 
   Future<void> _openShoppingCart(BuildContext context) async {
     notifierButtonsVisible.value = false;
+
     await Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,
